@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PorousMechanics"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1000">
     <Grid Margin="0, 0, 0, 0">
 
         <Grid>
@@ -22,15 +22,290 @@
 
 
 
-                <GroupBox Header="井深结构" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="0" >
-                    
+                <GroupBox Header="井深结构" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="0" 
+                          Margin="0, 0, 0, 0" FontSize="16" d:IsHidden="True">
+
+
+
+
                 </GroupBox>
-                
+
+
+                <GroupBox Header="材料参数" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Margin="-6, 0, 6, 0" FontSize="16" d:IsHidden="True">
+                    <DataGrid>
+
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="AliceBlue" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="FontSize" Value="16" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="32">
+
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Width="32">
+
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="材料" Width="0.6*">
+
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="泊松比" Width="0.6*">
+
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="弹性模量(GPa)" Width="1*">
+
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="导热系数(W/m·K)" Width="1*">
+
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="热膨胀系数(1/k)" Width="1.5*">
+
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+
+
+                <GroupBox Header="浆体与地层压力" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0" 
+                          Margin="0, 0,0, 0" FontSize="16" d:IsHidden="True">
+
+                </GroupBox>
+
+
+                <GroupBox Header="其他计算参数" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                          Margin="0,0,0,0" FontSize="16">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.4*" />
+                            <ColumnDefinition Width="0.8*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="0.8*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+
+                        <!--#region First Column-->
+
+                        <GroupBox Header="油管几何参数" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" 
+                                  Grid.RowSpan="3" Grid.ColumnSpan="2" FontSize="16" Margin="-5, -5, -5, -10" >
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.4*" />
+                                    <ColumnDefinition Width="0.8*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--油管外径(mm)-->
+                                <Label Content="油管外径(mm)" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       Margin="-2, -2, 0, 0" Name="label33" />
+                                <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Width="94" Name="Text33" />
+
+
+                                <!--油管壁厚(mm)-->
+                                <Label Content="油管壁厚(mm)" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center" Margin="-2, -2, 0, 0" Name="label34" />
+                                <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Width="94" Name="Text34" />
+
+
+                                <!--绝对粗糙度(mm)-->
+                                <Label Content="绝对粗糙度(mm)" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center" Margin="-2, -2, 0, 0" Name="label35" />
+                                <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Width="94" Name="Text35" />
+                            </Grid>
+                        </GroupBox>
+
+
+                        <!--环空保护液密度(g/cm³)-->
+                        <Label Content="环空保护液密度(g/cm³)" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left"
+                               VerticalAlignment="Center" Margin="-5, -2, -6, 0" Name="label6"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Width="94" Name="Text6" />
+
+
+                        <!--环空保护液导热系数(W/mK)-->
+                        <Label Content="环空保护液导热系数(W/mK)" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left"
+                               VerticalAlignment="Center" Margin="-7, 0, -6, 0" Name="label10" FontSize="14" />
+                        <TextBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Width="94" Name="Text10" />
+
+
+
+
+                        <!--天然气粘度(μPa·s)-->
+                        <Label Content="天然气粘度(μPa·s)" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left"
+                               VerticalAlignment="Center" Margin="-5, -2, -6, 0" Name="label7" />
+                        <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Width="94" Name="Text7" />
+
+
+                        <!--天然气导热系数(W/mK)-->
+                        <Label Content="天然气导热系数(W/mK)" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left"
+                               VerticalAlignment="Center" Margin="-5,-2,-6,0" Name="label9" />
+                        <TextBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Width="94" Name="Text9" />
+
+
+
+                        <!--计算步长(m)-->
+                        <Label Content="计算步长(m)" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left"
+                               VerticalAlignment="Center" Margin="-2, -2, -2, 0" Name="label5" />
+                        <TextBox Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Width="94" Name="Text5" />
+
+
+
+                        <!--#endregion-->
+
+                        <!--#region Second Column-->
+                        
+                        
+                        <!--产量(万方/天)-->
+                            <Label Content="产量(万方/天)" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" 
+                               VerticalAlignment="Center" Margin="-2, -2, -2, 0" Name="label1"/>
+                        <TextBox Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Width="94" Name="Text1" />
+
+
+                        <!--井底压力(MPa)-->
+                        <Label Content="井底压力(MPa)" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Margin="-2, -2, -2, 0" Name="label2"/>
+                        <TextBox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Width="94" Name="Text2"/>
+
+
+
+
+                        <!--井底温度(℃)-->
+                        <Label Content="井底温度(℃)" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Margin="-2, -2, -2, 0" Name="label3" />
+                        <TextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                 Name="Text3" Width="94" />
+
+
+
+                        <!--地表温度(℃)-->
+                        <Label Content="地表温度(℃)" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" 
+                               VerticalAlignment="Center" Margin="-2, -2, -2, 0" Name="label4" />
+                        <TextBox Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Name="Text4" Width="94" />
+
+
+                        <!--封隔器下深(m)-->
+                        <Label Content="封隔器下深(m)" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left"
+                               VerticalAlignment="Center" Margin="-2, -2, -2, 0" Name="label32" />
+                        <TextBox Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Width="94" Name="Text32" />
+
+
+                        <!--径向计算半径(m)-->
+                        <Label Content="径向计算半径(m)" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left"
+                               VerticalAlignment="Center" Margin="-5, -2, -6, 0" Name="label8" />
+                        <TextBox Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Width="94" Name="Text8" />
+
+
+
+                        <Button Content="保存" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center" 
+                                VerticalAlignment="Center" Name="button2" Width="75" FontSize="16"  />
+
+                        <Button Content="计算" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center"
+                                VerticalAlignment="Center" Name="button1" Width="75" FontSize="16" />
+
+                        <!--#endregion-->
+
+
+                    </Grid>
+                </GroupBox>
+
+
+                <GroupBox Header="计算结果" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="1" 
+                          Margin="0, 0, 0, 0" FontSize="16">
+
+
+                    <TabControl>
+
+                        <TabItem Header="输出结果" FontSize="13">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+
+
+                                <Label Content="B环空温度达110℃的深度（m）" Grid.Row="0" Grid.Column="0" 
+                                       HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0, 0, 0, 0"
+                                       Name="label03" />
+                                <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Width="94" Name="depthB" />
+
+
+                                
+                                
+                                <Label Content="C环空温度达110℃的深度（m）" Grid.Row="1" Grid.Column="0"
+                                       HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Name="label04" Margin="0, 0, 0, 0" />
+                                <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Width="94" Name="depthC"  />
+                            </Grid>
+                            
+                        </TabItem>
+
+                        <TabItem Header="压力场曲线" FontSize="13">
+                            
+                        </TabItem>
+
+
+                        <TabItem Header="井筒内温度曲线" FontSize="13">
+                            
+                        </TabItem>
+
+                        <TabItem Header="云图" FontSize="13">
+                            
+                        </TabItem>
+                        
+                    </TabControl>
+
+                </GroupBox>
+
+
             </Grid>
-            
-            
-            
+
+
+
         </Grid>
-            
+
     </Grid>
 </UserControl>
