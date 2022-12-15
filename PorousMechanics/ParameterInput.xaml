@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PorousMechanics"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             Loaded="Window_Loaded"
              d:DesignHeight="450" d:DesignWidth="1000">
     <Grid Margin="0, 0, 0, 0">
 
@@ -62,6 +63,9 @@
 
                             <DataGridTemplateColumn Header="弹性模量(GPa)" Width="1*">
 
+                                
+                                
+                                
                             </DataGridTemplateColumn>
 
                             <DataGridTemplateColumn Header="导热系数(W/m·K)" Width="1*">
@@ -70,6 +74,14 @@
 
                             <DataGridTemplateColumn Header="热膨胀系数(1/k)" Width="1.5*">
 
+                                
+                                
+                                
+                                
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="膨胀率" Width="1*">
+                                
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
