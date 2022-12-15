@@ -56,49 +56,91 @@ namespace PorousMechanics
             dt2.Columns.Add("ElasticModulus", typeof(double));
             dt2.Columns.Add("ThermalConductivity", typeof(double));
             dt2.Columns.Add("ExpensionCoefficient", typeof(double));
+            dt2.Columns.Add("ExpensionQuotient", typeof(double));
 
 
             DataRow row1 = dt2.NewRow();
-            row1["Materials"] = "油管";
+            row1["Materials"] = "表层套管";
             row1["PoissonRatio"] = 0.30;
-            row1["ElasticModulus"] = 210;
-            row1["ThermalConductivity"] = 50;
-            row1["ExpensionCoefficient"] = 0.00001159;
+            row1["ElasticModulus"] = 210000.00;
+            row1["ThermalConductivity"] = 50.00;
+            row1["ExpensionCoefficient"] = 11.59;
+            row1["ExpensionQuotient"] = 0.00;
             dt2.Rows.Add(row1);
 
 
             row1 = dt2.NewRow();
-            row1["Materials"] = "套管";
-            row1["PoissonRatio"] = 0.3;
-            row1["ElasticModulus"] = 210;
-            row1["ThermalConductivity"] = 50;
-            row1["ExpensionCoefficient"] = 0.00001159;
-            dt2.Rows.Add(row1);
-
-
-            row1 = dt2.NewRow();
-            row1["Materials"] = "水泥环";
+            row1["Materials"] = "水泥环1";
             row1["PoissonRatio"] = 0.21;
-            row1["ElasticModulus"] = 10;
+            row1["ElasticModulus"] = 10000.00;
             row1["ThermalConductivity"] = 0.58;
-            row1["ExpensionCoefficient"] = 0.00001;
+            row1["ExpensionCoefficient"] = 10.00;
+            row1["ExpensionQuotient"] = 0.00;
             dt2.Rows.Add(row1);
 
 
             row1 = dt2.NewRow();
-            row1["Materials"] = "地层";
-            row1["PoissonRatio"] = 0.3;
-            row1["ElasticModulus"] = 20;
-            row1["ThermalConductivity"] = 2;
-            row1["ExpensionCoefficient"] = 0.000007;
+            row1["Materials"] = "技术套管";
+            row1["PoissonRatio"] = 0.30;
+            row1["ElasticModulus"] = 210000.00;
+            row1["ThermalConductivity"] = 50.00;
+            row1["ExpensionCoefficient"] = 11.59;
+            row1["ExpensionQuotient"] = 0.00;
+            dt2.Rows.Add(row1);
+
+
+            row1 = dt2.NewRow();
+            row1["Materials"] = "水泥环2";
+            row1["PoissonRatio"] = 0.21;
+            row1["ElasticModulus"] = 10000.00;
+            row1["ThermalConductivity"] = 0.58;
+            row1["ExpensionCoefficient"] = 10.00;
+            row1["ExpensionQuotient"] = 0.00;
+            dt2.Rows.Add(row1);
+
+
+            row1 = dt2.NewRow();
+            row1["Materials"] = "技术尾管";
+            row1["PoissonRatio"] = 0.30;
+            row1["ElasticModulus"] = 210000.00;
+            row1["ThermalConductivity"] = 50.00;
+            row1["ExpensionCoefficient"] = 11.59;
+            row1["ExpensionQuotient"] = 0.00;
             dt2.Rows.Add(row1);
 
 
 
+            row1 = dt2.NewRow();
+            row1["Materials"] = "水泥环3";
+            row1["PoissonRatio"] = 0.21;
+            row1["ElasticModulus"] = 10000.00;
+            row1["ThermalConductivity"] = 0.58;
+            row1["ExpensionCoefficient"] = 10.00;
+            row1["ExpensionQuotient"] = 0.00;
+            dt2.Rows.Add(row1);
+
+
+            row1 = dt2.NewRow();
+            row1["Materials"] = "岩石";
+            row1["PoissonRatio"] = 0.30;
+            row1["ElasticModulus"] = 20000.00;
+            row1["ThermalConductivity"] = 2.00;
+            row1["ExpensionCoefficient"] = 7.00;
+            row1["ExpensionQuotient"] = 0.00;
+            dt2.Rows.Add(row1);
+
+
+            dataGrid2.ItemsSource = dt2.DefaultView;
+            dataGrid2.GridLinesVisibility = DataGridGridLinesVisibility.All;
+            
 
 
 
         }
 
+        private void dataGrid2_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+        }
     }
 }

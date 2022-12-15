@@ -33,10 +33,10 @@
 
 
                 <GroupBox Header="材料参数" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Margin="-6, 0, 6, 0" FontSize="16" d:IsHidden="True">
-                    <DataGrid>
+                    <DataGrid x:Name="dataGrid2" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0, 1, 0, 0" LoadingRow="dataGrid2_LoadingRow">
 
                         <DataGrid.ColumnHeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
                                 <Setter Property="Background" Value="AliceBlue" />
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
                                 <Setter Property="Foreground" Value="Black" />
@@ -45,20 +45,45 @@
                         </DataGrid.ColumnHeaderStyle>
 
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Width="32">
-
-                            </DataGridTemplateColumn>
-
-                            <DataGridTemplateColumn Width="32">
-
-                            </DataGridTemplateColumn>
 
                             <DataGridTemplateColumn Header="材料" Width="0.6*">
 
+                                
+                                
+                                
                             </DataGridTemplateColumn>
 
                             <DataGridTemplateColumn Header="泊松比" Width="0.6*">
+                                <DataGridTemplateColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                                    <Grid>
+                                                        <Border BorderBrush="Black" BorderThickness="0, 1, 1, 1" Grid.Column="0" Grid.Row="0" />
+                                                        <Label Content="泊松比" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Margin="0, 0, 0, 0" x:Name="label12" VerticalAlignment="Center" FontSize="16" />
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTemplateColumn.HeaderStyle>
 
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock HorizontalAlignment="Center" Text="{Binding PoissonRatio}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding PoissonRatio}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                                
+                                
+                                
+                                
                             </DataGridTemplateColumn>
 
                             <DataGridTemplateColumn Header="弹性模量(GPa)" Width="1*">
