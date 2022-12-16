@@ -34,7 +34,6 @@
 
                 <GroupBox Header="材料参数" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Margin="-6, 0, 6, 0" FontSize="16" d:IsHidden="True">
                     <DataGrid x:Name="dataGrid2" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0, 1, 0, 0" LoadingRow="dataGrid2_LoadingRow">
-
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="{x:Type DataGridColumnHeader}">
                                 <Setter Property="Background" Value="AliceBlue" />
@@ -45,10 +44,8 @@
                         </DataGrid.ColumnHeaderStyle>
 
                         <DataGrid.Columns>
-
                             <DataGridTemplateColumn Header="材料" Width="0.6*">
-
-                                <DataGridTemplateColumn.HeaderStyle>
+                                <!--<DataGridTemplateColumn.HeaderStyle>
                                     <Style TargetType="{x:Type DataGridColumnHeader}">
                                         <Setter Property="HorizontalAlignment" Value="Center" />
                                         <Setter Property="Template">
@@ -62,7 +59,7 @@
                                             </Setter.Value>
                                         </Setter>
                                     </Style>
-                                </DataGridTemplateColumn.HeaderStyle>
+                                </DataGridTemplateColumn.HeaderStyle>-->
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock HorizontalAlignment="Center" Text="{Binding Materials}" />
@@ -77,7 +74,7 @@
                             </DataGridTemplateColumn>
 
                             <DataGridTemplateColumn Header="泊松比" Width="0.6*">
-                                <DataGridTemplateColumn.HeaderStyle>
+                                <!--<DataGridTemplateColumn.HeaderStyle>
                                     <Style TargetType="{x:Type DataGridColumnHeader}">
                                         <Setter Property="HorizontalAlignment" Value="Center" />
                                         <Setter Property="Template">
@@ -91,7 +88,7 @@
                                             </Setter.Value>
                                         </Setter>
                                     </Style>
-                                </DataGridTemplateColumn.HeaderStyle>
+                                </DataGridTemplateColumn.HeaderStyle>-->
 
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -112,8 +109,21 @@
                             <DataGridTemplateColumn Header="弹性模量(GPa)" Width="1*">
 
 
-
-
+                                <!--<DataGridTemplateColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                                    <Grid>
+                                                        <Border BorderBrush="Black" BorderThickness="0, 1, 1, 1" Grid.Column="0" Grid.Row="0" />
+                                                        <Label Content="弹性模量(GPa)" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Margin="0, 0, 0, 0" x:Name="label12" VerticalAlignment="Center" FontSize="16" />
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTemplateColumn.HeaderStyle>-->
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock HorizontalAlignment="Center" Text="{Binding ElasticModulus}" />
@@ -147,17 +157,54 @@
                             
                             <DataGridTemplateColumn Header="热膨胀系数(1/k)" Width="1.5*">
 
-                                
-                                
-                                
-                                
+
+
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock HorizontalAlignment="Center" Text="{Binding ExpensionCoefficient}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding ExpensionCoefficient}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
                             </DataGridTemplateColumn>
 
                             <DataGridTemplateColumn Header="膨胀率" Width="1*">
+
+
+
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock HorizontalAlignment="Center" Text="{Binding ExpensionQuotient}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding ExpensionQuotient}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
                                 
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
+
+
+
+
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="增加行" Click="Insert_Row"/>
+                                <Separator />
+                                <MenuItem Header="删除行" Click="Delete_Row"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        
                     </DataGrid>
+                
+                
+                    
+                
                 </GroupBox>
 
 

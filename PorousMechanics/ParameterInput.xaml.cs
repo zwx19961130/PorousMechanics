@@ -142,5 +142,48 @@ namespace PorousMechanics
         {
             e.Row.Header = e.Row.GetIndex() + 1;
         }
+
+
+
+
+        public void Insert_Row(object sender, RoutedEventArgs e)
+        {
+            int _rowIndex = 0;
+            int _columnIndex = 0;
+            if (GetCellXY(ref _rowIndex, ref _columnIndex))
+            {
+                dt2.Rows.InsertAt(dt2.NewRow(), _rowIndex);
+            }
+        }
+
+
+        //---删除选中Cell所在行
+        public void Delete_Row(object sender, RoutedEventArgs e)
+        {
+            int _rowIndex = 0;
+            int _columnIndex = 0;
+            if (GetCellXY(ref _rowIndex, ref _columnIndex))
+            {
+                dt2.Rows.RemoveAt(_rowIndex);
+            }
+        }
+
+
+
+        //----取得选中Cell所在的行列
+        public bool GetCellXY(ref int rowIndex, ref int columnIndex)
+        {
+            var _cells = dataGrid2.SelectedCells;
+            if (_cells.Any())
+            {
+                rowIndex = dataGrid2.Items.IndexOf(_cells.First().Item);
+                columnIndex = _cells.First().Column.DisplayIndex;
+                return true;
+            }
+            return false;
+        }
+
+
+
     }
 }
