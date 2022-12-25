@@ -22,8 +22,8 @@ namespace PorousMechanics
     /// 
 
 
-    public enum KeyOpening { 一开, 二开, 三开, 四开, 五开 };
-    public enum KeyCasingType { 表层套管, 技术套管, 生产套管 };
+    public enum keyOpening { 一开, 二开, 三开, 四开, 五开 };
+    public enum keyCasingType { 表层套管, 技术套管, 生产套管 };
 
 
     public partial class ParameterInput : UserControl
@@ -47,8 +47,34 @@ namespace PorousMechanics
 
 
 
+            dt1.Columns.Add("Opening", typeof(Enum));
+            dt1.Columns.Add("DrillSize", typeof(double));
+            dt1.Columns.Add("WEnlarge", typeof(double));
+            dt1.Columns.Add("CasingType", typeof(Enum));
+            dt1.Columns.Add("Outerdm", typeof(double));
+            dt1.Columns.Add("Wthickness", typeof(double));
+            dt1.Columns.Add("TDepth", typeof(double));
+            dt1.Columns.Add("BDepth", typeof(double));
+            dt1.Columns.Add("WAngle", typeof(double));
+            dt1.Columns.Add("CHeight", typeof(double));
 
 
+            DataRow row = dt1.NewRow();
+            row["Opening"] = keyOpening.二开;
+            row["DrillSize"] = 171.4;
+            row["WEnlarge"] = 5;
+            row["CasingType"] = keyCasingType.技术套管;
+            row["Outerdm"] = 139.7;
+            row["Wthickness"] = 14.27;
+            row["TDepth"] = 0;
+            row["BDepth"] = 7280;
+            row["WAngle"] = 0;
+            row["CHeight"] = 0;
+            dt1.Rows.Add(row);
+
+
+            dataGrid1.ItemsSource = dt1.DefaultView;
+            dataGrid1.GridLinesVisibility = DataGridGridLinesVisibility.All;
 
 
             dt2.Columns.Add("Materials", typeof(string));

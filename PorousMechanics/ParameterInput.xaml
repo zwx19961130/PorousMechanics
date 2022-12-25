@@ -4,9 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PorousMechanics"
-             mc:Ignorable="d"
-             Loaded="Window_Loaded"
+             xmlns:core="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"   Loaded="Window_Loaded"
              d:DesignHeight="450" d:DesignWidth="1000">
+
+
+
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="OpeningKey" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="local:keyOpening" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="CasingTypeKey" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+            <ObjectDataProvider.MethodParameters>               
+                <x:Type Type="local:keyCasingType"/>  
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    
+    
+    
+    
+    
     <Grid Margin="0, 0, 0, 0">
 
         <Grid>
@@ -23,12 +43,304 @@
 
 
 
-                <GroupBox Header="井深结构" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="0" 
-                          Margin="0, 0, 0, 0" FontSize="16" d:IsHidden="True">
+                <GroupBox Header="井身结构" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" FontSize="16">
+                    <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,1,0,0" HorizontalAlignment="Stretch" ItemBindingGroup="{Binding BindsDirectlyToSource=True}">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="AliceBlue"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontSize" Value="16" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.Columns>
+                            <!--<DataGridTemplateColumn Width="0.5*">
+                                <DataGridTemplateColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                                    <Grid>
+                                                        <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Column="0" Grid.Row="0" />
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTemplateColumn.HeaderStyle>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button>
+                                            <Border Width="20" Height="20" CornerRadius="20" Background="CornflowerBlue" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <Path Data="M0 0L22 0" Stroke="WhiteSmoke" StrokeThickness="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
+                            <DataGridTemplateColumn Width="0.5*">
+                                <DataGridTemplateColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                                    <Grid>
+                                                        <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="0" />
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTemplateColumn.HeaderStyle>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Background="AliceBlue">
+                                            <Border Width="20" Height="20" CornerRadius="20" Background="CornflowerBlue" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <Path Data="M0 11L22 11M11 0L11 22" Stroke="WhiteSmoke" StrokeThickness="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>-->
 
+                            <DataGridComboBoxColumn  Header="开次"  SelectedItemBinding="{Binding Opening}" ItemsSource="{Binding Source={StaticResource OpeningKey}}" >
+                                <DataGridComboBoxColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                                    <Grid>
+                                                        <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="0" />
+                                                        <Label Content="开次" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label12" VerticalAlignment="Center" FontSize="16" />
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridComboBoxColumn.HeaderStyle>
+                            </DataGridComboBoxColumn>
 
+                            <DataGridTemplateColumn Width="3.5*">
+                                <DataGridTemplateColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="1*"/>
+                                                            <RowDefinition Height="1*"/>
+                                                            <RowDefinition Height="1*"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="1.5*"/>
+                                                            <ColumnDefinition Width="2*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+                                                        <Label Content="井眼数据" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label13" VerticalAlignment="Center" FontSize="16"/>
 
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="0" Grid.Row="1" />
+                                                        <Label Content="钻头尺寸" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label14" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0.5" Grid.Column="0" Grid.Row="2" />
+                                                        <Label Content="(mm)" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label15" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="1" Grid.Row="1" />
+                                                        <Label Content="井眼扩大率" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label16" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0.5" Grid.Column="1" Grid.Row="2" />
+                                                        <Label Content="(%)" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label17" VerticalAlignment="Center" FontSize="16"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTemplateColumn.HeaderStyle>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="0" />
+                                            <TextBlock HorizontalAlignment="Center" Text="{Binding DrillSize}" Grid.Column="0"/>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,0,0" Grid.Column="1" />
+                                            <TextBlock HorizontalAlignment="Center" Text="{Binding WEnlarge}" Grid.Column="1"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="0" />
+                                            <TextBox Grid.Column="0" Text="{Binding DrillSize}"/>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,0,0" Grid.Column="1" />
+                                            <TextBox Grid.Column="1" Text="{Binding WEnlarge}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridComboBoxColumn  Header="套管层次"  SelectedItemBinding="{Binding CasingType}" ItemsSource="{Binding Source={StaticResource CasingTypeKey}}" >
+                                <DataGridComboBoxColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                                    <Grid>
+                                                        <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="0" />
+                                                        <Label Content="套管层次" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Margin=" 0,0,0,0" VerticalAlignment="Center" FontSize="16" />
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridComboBoxColumn.HeaderStyle>
+                            </DataGridComboBoxColumn>
+
+                            <DataGridTemplateColumn Width="6.6*">
+                                <DataGridTemplateColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="1*"/>
+                                                            <RowDefinition Height="1*"/>
+                                                            <RowDefinition Height="1*"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="1.1*"/>
+                                                            <ColumnDefinition Width="1.1*"/>
+                                                            <ColumnDefinition Width="1.1*"/>
+                                                            <ColumnDefinition Width="1.1*"/>
+                                                            <ColumnDefinition Width="1.1*"/>
+                                                            <ColumnDefinition Width="1.5*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6"/>
+                                                        <Label Content="套管数据" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label19" VerticalAlignment="Center" FontSize="16" Grid.ColumnSpan="6"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="0" Grid.Row="1" />
+                                                        <Label Content="外径" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label20" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0.5" Grid.Column="0" Grid.Row="2" />
+                                                        <Label Content="(mm)" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label21" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="1" Grid.Row="1" />
+                                                        <Label Content="壁厚" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label22" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0.5" Grid.Column="1" Grid.Row="2" />
+                                                        <Label Content="(mm)" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label23" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="2" Grid.Row="1" />
+                                                        <Label Content="顶深" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label24" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0.5" Grid.Column="2" Grid.Row="2" />
+                                                        <Label Content="(m)" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label25" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="3" Grid.Row="1" />
+                                                        <Label Content="底深" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label26" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0.5" Grid.Column="3" Grid.Row="2" />
+                                                        <Label Content="(m)" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label27" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="4" Grid.Row="1" />
+                                                        <Label Content="井斜角" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label28" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0.5" Grid.Column="4" Grid.Row="2" />
+                                                        <Label Content="(°)" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label29" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="5" Grid.Row="1" />
+                                                        <Label Content="水泥返高" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label30" VerticalAlignment="Center" FontSize="16"/>
+
+                                                        <Border BorderBrush="Black" BorderThickness="0,0,1,0.5" Grid.Column="5" Grid.Row="2" />
+                                                        <Label Content="(m)" Grid.Column="5" Grid.Row="2" HorizontalAlignment="Center" Margin=" 0,0,0,0"  x:Name="label31" VerticalAlignment="Center" FontSize="16"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTemplateColumn.HeaderStyle>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1.1*"/>
+                                                <ColumnDefinition Width="1.1*"/>
+                                                <ColumnDefinition Width="1.1*"/>
+                                                <ColumnDefinition Width="1.1*"/>
+                                                <ColumnDefinition Width="1.1*"/>
+                                                <ColumnDefinition Width="1.5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="0" />
+                                            <TextBlock HorizontalAlignment="Center" Text="{Binding Outerdm}" Grid.Column="0"/>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="1" />
+                                            <TextBlock HorizontalAlignment="Center" Text="{Binding Wthickness}" Grid.Column="1"/>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="2" />
+                                            <TextBlock HorizontalAlignment="Center" Text="{Binding TDepth}" Grid.Column="2"/>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="3" />
+                                            <TextBlock HorizontalAlignment="Center" Text="{Binding BDepth}" Grid.Column="3"/>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Column="4" />
+                                            <TextBlock HorizontalAlignment="Center" Text="{Binding WAngle}" Grid.Column="4"/>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,0,0" Grid.Column="5" />
+                                            <TextBlock HorizontalAlignment="Center" Text="{Binding CHeight}" Grid.Column="5"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1.1*"/>
+                                                <ColumnDefinition Width="1.1*"/>
+                                                <ColumnDefinition Width="1.1*"/>
+                                                <ColumnDefinition Width="1.1*"/>
+                                                <ColumnDefinition Width="1.1*"/>
+                                                <ColumnDefinition Width="1.5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Column="0"/>
+                                            <TextBox Grid.Column="0" Text="{Binding Outerdm}"/>
+
+                                            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Column="1" />
+                                            <TextBox Grid.Column="1" Text="{Binding Wthickness}"/>
+
+                                            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Column="1" />
+                                            <TextBox Grid.Column="2" Text="{Binding TDepth}"/>
+
+                                            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Column="1" />
+                                            <TextBox Grid.Column="3" Text="{Binding BDepth}"/>
+
+                                            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Column="1" />
+                                            <TextBox Grid.Column="4" Text="{Binding WAngle}"/>
+
+                                            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Column="1" />
+                                            <TextBox Grid.Column="5" Text="{Binding CHeight}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </GroupBox>
 
 
