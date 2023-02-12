@@ -25,6 +25,8 @@ namespace PorousMechanics
     public enum keyOpening { 一开, 二开, 三开, 四开, 五开 };
     public enum keyCasingType { 表层套管, 技术套管, 生产套管 };
 
+    public enum keyFluid { 领浆, 尾浆};
+
 
     public partial class ParameterInput : UserControl
     {
@@ -32,7 +34,7 @@ namespace PorousMechanics
 
         DataTable dt1 = new DataTable();
         DataTable dt2 = new DataTable();
-
+        DataTable dt3 = new DataTable();
 
         public ParameterInput()
         {
@@ -46,7 +48,7 @@ namespace PorousMechanics
 
 
 
-
+            //井身结构
             dt1.Columns.Add("Opening", typeof(Enum));
             dt1.Columns.Add("DrillSize", typeof(double));
             dt1.Columns.Add("WEnlarge", typeof(double));
@@ -77,6 +79,7 @@ namespace PorousMechanics
             dataGrid1.GridLinesVisibility = DataGridGridLinesVisibility.All;
 
 
+            //材料参数
             dt2.Columns.Add("Materials", typeof(string));
             dt2.Columns.Add("PoissonRatio", typeof(double));
             dt2.Columns.Add("ElasticModulus", typeof(double));
@@ -158,7 +161,35 @@ namespace PorousMechanics
 
             dataGrid2.ItemsSource = dt2.DefaultView;
             dataGrid2.GridLinesVisibility = DataGridGridLinesVisibility.All;
-            
+
+
+
+            //浆体与底层压力
+            dt3.Columns.Add("CasingType", typeof(Enum)); // 套管层次
+            dt3.Columns.Add("QianzhiyeMidu", typeof(double)); // 前置液密度
+            dt3.Columns.Add("YalieyeMidu", typeof(double)); // 压裂液密度
+            dt3.Columns.Add("ZuanjingyeMidu", typeof(double)); // 钻井液密度
+            dt3.Columns.Add("liuti", typeof(Enum)); // 流体
+            dt3.Columns.Add("midu", typeof(double)); // 密度
+            dt3.Columns.Add("fanshen", typeof(double)); // 返深
+            dt3.Columns.Add("YalieqianDicengyalitidu", typeof(double)); // 压裂前地层压力梯度
+            dt3.Columns.Add("YaliehouDicengyalitidu", typeof(double)); // 压裂后地层压力梯度
+
+
+            DataRow row2 = dt3.NewRow();
+            row2["CasingType"] = keyCasingType.表层套管;
+            row2["QianzhiyeMidu"] = 1.00;
+            row2["YalieyeMidu"] = 1.03;
+            row2["ZuanjingyeMidu"] = 1.00;
+            row2["liuti"] = keyFluid.领浆;
+            row2["midu"] = 1.45;
+            row2["fanshen"] = 0.00;
+            row2["YalieqianDicengyalitidu"] = 0.92;
+            row2["YaliehouDicengyalitidu"] = 0.92;
+            dt3.Rows.Add(row2);
+
+            dataGrid3.ItemsSource = dt3.DefaultView;
+            dataGrid3.GridLinesVisibility = DataGridGridLinesVisibility.All;
 
 
 
@@ -172,11 +203,11 @@ namespace PorousMechanics
 
 
 
-        public void Insert_Row(object sender, RoutedEventArgs e)
+        public void Insert_Grid2_Row(object sender, RoutedEventArgs e)
         {
             int _rowIndex = 0;
             int _columnIndex = 0;
-            if (GetCellXY(ref _rowIndex, ref _columnIndex))
+            if (GetGrid2CellXY(ref _rowIndex, ref _columnIndex))
             {
                 dt2.Rows.InsertAt(dt2.NewRow(), _rowIndex);
             }
@@ -184,25 +215,61 @@ namespace PorousMechanics
 
 
         //---删除选中Cell所在行
-        public void Delete_Row(object sender, RoutedEventArgs e)
+        public void Delete_Grid2_Row(object sender, RoutedEventArgs e)
         {
             int _rowIndex = 0;
             int _columnIndex = 0;
-            if (GetCellXY(ref _rowIndex, ref _columnIndex))
+            if (GetGrid2CellXY(ref _rowIndex, ref _columnIndex))
             {
                 dt2.Rows.RemoveAt(_rowIndex);
             }
         }
 
 
+        public void Insert_Grid3_Row(object sender, RoutedEventArgs e)
+        {
+            int _rowIndex = 0;
+            int _columnIndex = 0;
+            if (GetGrid3CellXY(ref _rowIndex, ref _columnIndex))
+            {
+                dt3.Rows.InsertAt(dt3.NewRow(), _rowIndex);
+            }
+        }
+
+
+        //---删除选中Cell所在行
+        public void Delete_Grid3_Row(object sender, RoutedEventArgs e)
+        {
+            int _rowIndex = 0;
+            int _columnIndex = 0;
+            if (GetGrid3CellXY(ref _rowIndex, ref _columnIndex))
+            {
+                dt3.Rows.RemoveAt(_rowIndex);
+            }
+        }
+
+
 
         //----取得选中Cell所在的行列
-        public bool GetCellXY(ref int rowIndex, ref int columnIndex)
+        public bool GetGrid2CellXY(ref int rowIndex, ref int columnIndex)
         {
             var _cells = dataGrid2.SelectedCells;
             if (_cells.Any())
             {
                 rowIndex = dataGrid2.Items.IndexOf(_cells.First().Item);
+                columnIndex = _cells.First().Column.DisplayIndex;
+                return true;
+            }
+            return false;
+        }
+
+
+        public bool GetGrid3CellXY(ref int rowIndex, ref int columnIndex)
+        {
+            var _cells = dataGrid3.SelectedCells;
+            if (_cells.Any())
+            {
+                rowIndex = dataGrid3.Items.IndexOf(_cells.First().Item);
                 columnIndex = _cells.First().Column.DisplayIndex;
                 return true;
             }
